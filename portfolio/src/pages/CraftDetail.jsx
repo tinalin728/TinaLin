@@ -1,11 +1,18 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import { useParams, useNavigate } from 'react-router-dom'
 import { craftsData } from '../data/craftsData'
 import UIUXLayout from '../components/craftDetail/UIUXLayout';
 import CodingLayout from '../components/craftDetail/CodingLayout';
-
+import DesignLayout from '../components/craftDetail/DesignLayout';
 import { gsap } from 'gsap/gsap-core'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import { Helmet } from 'react-helmet';
+
+import PrimaryBtn from '../components/buttons/PrimaryBtn';
+import arrow from '../../public/assets/icons/arrow.svg';
+
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -34,18 +41,33 @@ function CraftDetail() {
         } else {
             document.querySelector('main').style.overflow = 'hidden';
         }
-
         return () => {
             document.querySelector('main').style.overflow = '';
         };
     }, [craft])
 
 
+
     return (
         <>
+            {/* metadata */}
+            <Helmet>
+                <title>{craft.title} | Tina Lin's Portfolio</title>
+                <meta name="description" content={craft.overview.content} />
+                <meta
+                    name="keywords"
+                    content={`Tina Lin, ${craft.title}, ${craft.type}, Portfolio, UX Design, Web Development`}
+                />
+                <meta property="og:title" content={`${craft.title} | Tina Lin's Portfolio`} />
+                <meta property="og:description" content={craft.overview.content} />
+                <meta property="og:image" content={craft.banner.image.src} />
+                <meta property="og:url" content={`https://www.tinalin.ca/crafts/${craft.id}`} />
+                <meta property="og:type" content="article" />
+            </Helmet>
+
             {/* banner */}
-            <section className='overflow-hidden py-[10rem]'>
-                <div className='relative h-full max-w-container flex flex-col items-center justify-between gap-8 md:flex-row '>
+            <section className='max-w-container overflow-hidden py-[6rem]'>
+                <div className='relative h-full flex flex-col items-center justify-between gap-8 md:flex-row'>
                     <div className='flex-1'>
                         <p className='text-dark-grey text-center mb-2 md:text-left'>{craft.banner.subHeader}</p>
                         <h1 className='text-wrap text-center md:text-left'> {craft.banner.header}</h1>
@@ -58,43 +80,28 @@ function CraftDetail() {
             </section>
 
             {/* overview */}
-            <section className='overview  border-t'>
-                <div className=' content-w  border-x pt-[10rem] pb-4 '>
-                    <div className='max-w-[35rem]'>
-                        <p className='text-dark-grey'> {craft.overview.tagline} </p>
-                        <h2>{craft.title}</h2>
-                        <p>{craft.overview.companyOverview}</p>
-                    </div>
-
-                    <div className='content-gap mb-0 md:flex md:gap-12 md:justify-center'>
+            <section className='overview border-t-2  bg-darker-bg'>
+                <div className='content-w pb-4 pt-[10rem]'>
+                    <h2>Project Overview</h2>
+                    <div className='flex flex-col gap-10 md:flex-row md:gap-16 md:justify-center'>
                         <div className='flex-1'>
-                            <h3>Project Overview</h3>
-                            <p dangerouslySetInnerHTML={{ __html: craft.overview.content }} />
-
-                            <div className='mt-6 mb-4'>
-                                <p className='font-roundo-medium text-orange'>My Role</p>
-                                <p>{craft.overview.role}</p>
-                            </div>
-                            <div className='mb-6'>
-                                <p className='font-roundo-medium text-orange'>Project Duration</p>
-                                <p>{craft.overview.duration}</p>
-                            </div>
+                            <p className='mb-10'>{craft.overview.content}</p>
+                            <a href="#prototype" className='px-6 py-4 rounded-full border-2  font-roundo-medium shadow-charcoal hover:shadow-charcoal-hover transition duration-300'>Skip to Prototype</a>
                         </div>
 
                         <div className='flex-1'>
-                            <div className='flex flex-col justify-between gap-10'>
+                            <div className='flex flex-col justify-between gap-6'>
                                 <div>
-                                    <h3>Challenges</h3>
-                                    <p dangerouslySetInnerHTML={{ __html: craft.overview.challenge }} />
+                                    <p className='font-roundo-medium text-orange'>My Role</p>
+                                    <p>{craft.overview.role}</p>
                                 </div>
                                 <div>
-                                    <h3>What I Accomplished</h3>
-                                    <ul className='ml-3'>
-                                        {craft.overview.accomplish.map((item, index) => (
-                                            <li key={index} className='font-roundo list-disc leading-[30px]'> {item} </li>
-                                        ))}
-                                    </ul>
-
+                                    <p className='font-roundo-medium text-orange'>Project Duration</p>
+                                    <p>{craft.overview.duration}</p>
+                                </div>
+                                <div>
+                                    <p className='font-roundo-medium text-orange'>Deliverables</p>
+                                    <p>{craft.overview.deliverables}</p>
                                 </div>
                             </div>
                         </div>
@@ -102,39 +109,55 @@ function CraftDetail() {
                 </div>
             </section>
 
-            <div className='relative h-full border-black'>
-                <div className='h-full content-w border-x'>
+
+            <div className='relative h-full bg-darker-bg'>
+                <div className='h-full'>
                     {/* render uiux or coding project */}
 
                     {craft.type === 'UXUI' ?
-                        <UIUXLayout craft={craft} /> :
-
-                        <CodingLayout craft={craft} />
+                        (<UIUXLayout craft={craft} />) :
+                        craft.type === 'coding' ? (
+                            <CodingLayout craft={craft} />) : (
+                            <DesignLayout craft={craft} />
+                        )
                     }
                 </div>
 
             </div>
 
             <div className='border-y border-black pt-14 overflow-hidden'>
-                <div className='max-w-container flex justify-between translate-y-6'>
+                <div className='max-w-container flex justify-between translate-y-4'>
                     {prev ?
                         (<button
-                            onClick={() => navigate(`/crafts/${prev.id}`)}
-                            className='font-craftwork text-light-yellow-bg text-stroke text-xl md:text-3xl lg:text-4xl font-extrabold uppercase hover:btn-text-shadow transition duration-500'>
+                            onClick={() => {
+                                window.scrollTo({
+                                    top: 0,
+                                    left: 0,
+                                    behavior: 'auto',
+                                }); navigate(`/crafts/${prev.id}`);
+                            }}
+                            className='font-craftwork text-light-yellow-bg text-stroke text-3xl font-extrabold uppercase hover:btn-text-shadow transition duration-500'>
                             Prev
                         </button>) :
-                        (<span className='font-craftwork text-transparent text-stroke text-xl md:text-3xl lg:text-4xl  font-extrabold uppercase cursor-not-allowed'>Prev </span>)
+                        (<span className='font-craftwork text-transparent text-stroke text-3xl  font-extrabold uppercase cursor-not-allowed'>Prev </span>)
 
                     }
 
                     {next ? (
                         <button
-                            onClick={() => navigate(`/crafts/${next.id}`)}
-                            className='font-craftwork font-extrabold text-light-yellow-bg text-xl md:text-3xl lg:text-4xl text-stroke uppercase hover:btn-text-shadow-r'>
+                            onClick={() => {
+                                window.scrollTo({
+                                    top: 0,
+                                    left: 0,
+                                    behavior: 'auto',
+                                });
+                                navigate(`/crafts/${next.id}`);
+                            }}
+                            className='font-craftwork font-extrabold text-light-yellow-bg text-3xl text-stroke uppercase hover:btn-text-shadow-r'>
                             Next
                         </button>
                     ) : (
-                        <span className='font-craftwork text-transparent text-stroke text-xl md:text-3xl lg:text-4xl font-extrabold uppercase cursor-not-allowed'>Next </span>
+                        <span className='font-craftwork text-transparent text-stroke text-3xl font-extrabold uppercase cursor-not-allowed'>Next </span>
                     )}
                 </div>
             </div>

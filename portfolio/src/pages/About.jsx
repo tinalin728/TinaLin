@@ -1,26 +1,26 @@
 import React from 'react'
-import PageHero from '../components/PageHero'
-import profilePic from '../assets/images/about/tina.jpg'
 import PrimaryBtn from '../components/buttons/PrimaryBtn'
-import iconHeart from '../assets/images/about/icon-heart.svg'
-import iconSave from '../assets/images/about/icon-save.svg'
-import iconShare from '../assets/images/about/icon-share.svg'
-import iconComment from '../assets/images/about/icon-comment.svg'
-import iconDownload from '../assets/images/about/icon-download.svg'
-import hobbies from '../assets/images/about/hobbies.png'
-import beading from '../assets/images/about/beading.png'
-import doodle from '../assets/images/about/doodle.png'
+import PageHero from '../components/PageHero'
 
-import ps from '../assets/images/about/ps.svg'
-import ai from '../assets/images/about/ai.svg'
-import id from '../assets/images/about/id.svg'
-import ae from '../assets/images/about/ae.svg'
-import dn from '../assets/images/about/dn.svg'
-import figma from '../assets/images/about/figma.svg'
-import wordpress from '../assets/images/about/wordpress.svg'
-import checker from '../assets/images/about/checker.svg'
-import orangeChecker from '../assets/images/about/orangeChecker.svg'
-import greyChecker from '../assets/images/about/greyChecker.svg'
+// images
+import profilePic from '../../public/assets/about/tina.jpg'
+import iconHeart from '../../public/assets/about/icon-heart.svg'
+import iconSave from '../../public/assets/about/icon-save.svg'
+import iconShare from '../../public/assets/about/icon-share.svg'
+import iconComment from '../../public/assets/about/icon-comment.svg'
+import iconDownload from '../../public/assets/about/icon-download.svg'
+import hobbies from '../../public/assets/about/hobbies.png'
+import ps from '../../public/assets/about/ps.svg'
+import ai from '../../public/assets/about/ai.svg'
+import id from '../../public/assets/about/id.svg'
+import ae from '../../public/assets/about/ae.svg'
+import dn from '../../public/assets/about/dn.svg'
+import figma from '../../public/assets/about/figma.svg'
+import wordpress from '../../public/assets/about/wordpress.svg'
+import checker from '../../public/assets/about/checker.svg'
+import orangeChecker from '../../public/assets/about/orangeChecker.svg'
+import greyChecker from '../../public/assets/about/greyChecker.svg'
+import grainbg from '../../public/assets/about/grain.png'
 
 
 
@@ -52,6 +52,13 @@ function About() {
         backgroundRepeat: 'no-repeat',
         backgroundOpacity: '.1'
     }
+    const grain = {
+        backgroundImage: `url(${grainbg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundOpacity: '.1'
+    }
 
 
     return (
@@ -61,42 +68,43 @@ function About() {
                 tagline='From Education to Tech'
             />
 
-
-            <div className='bg-light-grey-bg border-2 py-[10rem]'>
+            <div className='bg-darker-bg border-2 py-[10rem]'>
                 <div className='max-w-container'>
                     {/* image */}
-                    <section className='flex flex-col lg:flex-row gap-[5rem] items-center justify-center'>
-                        <div className='flex flex-col items-center gap-[6rem] -mt-20 mb-10'>
-                            <div className='relative pt-14 w-[360px]'>
-                                <div className="absolute top-[62%] left-[54%] -translate-x-1/2 -translate-y-1/2 w-[101%] h-[115%] bg-light-yellow-bg border-2 rounded-xl z-[1]"></div>
-                                <div className="absolute top-[60%] left-[52%] -translate-x-1/2 -translate-y-1/2 w-[101%] h-[115%] bg-light-yellow-bg border-2 rounded-xl z-[1]"></div>
+                    <section className='flex flex-col lg:flex-row gap-16 items-center justify-center'>
+                        <div className='basis-[30%]'>
+                            <div className='flex flex-col items-center gap-[6rem] -mt-20 mb-10'>
+                                <div className='relative pt-14 max-w-[350px]'>
+                                    <div className="absolute top-[62%] left-[54%] -translate-x-1/2 -translate-y-1/2 w-[101%] h-[115%] bg-light-yellow-bg border-2 rounded-xl z-[1]"></div>
+                                    <div className="absolute top-[60%] left-[52%] -translate-x-1/2 -translate-y-1/2 w-[101%] h-[115%] bg-light-yellow-bg border-2 rounded-xl z-[1]"></div>
 
-                                <div className="absolute top-[58%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[101%] h-[115%] bg-white border-2 rounded-xl z-[1]"></div>
+                                    <div className="absolute top-[58%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[101%] h-[115%] bg-light-yellow-bg border-2 rounded-xl z-[1]"></div>
 
 
-                                <div className='relative z-10 mx-auto mb-4'>
-                                    <img src={profilePic} alt="" className='object-cover w-[90%] mx-auto border-2 rounded-md' />
-                                </div>
-
-                                <div className='flex justify-between items-center px-6'>
-                                    <div className='flex gap-6 z-20 relative w-[28px]'>
-                                        <img src={iconHeart} alt="like icon" />
-                                        <img src={iconComment} alt="comment icon" />
-                                        <img src={iconShare} alt="share icon" />
+                                    <div className='relative z-10 mx-auto mb-4'>
+                                        <img src={profilePic} alt="" className='object-cover w-[90%] mx-auto border-2 rounded-md' />
                                     </div>
 
-                                    <div className='relative z-20 w-[25px]'>
-                                        <img src={iconSave} alt="save icon" />
+                                    <div className='flex justify-between items-center px-6'>
+                                        <div className='flex gap-6 z-20 relative w-[28px]'>
+                                            <img src={iconHeart} alt="like icon" />
+                                            <img src={iconComment} alt="comment icon" />
+                                            <img src={iconShare} alt="share icon" />
+                                        </div>
+
+                                        <div className='relative z-20 w-[25px]'>
+                                            <img src={iconSave} alt="save icon" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className=''>
+                        <div className='basis-[70%]'>
                             <div className='py-2 mb-2 text-orange border-b border-black border-dashed'>
-                                <h4>Peek Into My Life</h4>
+                                <h3>Peek Into My Life</h3>
                             </div>
-                            <p className='indent-4 mb-2 font-roundo-medium text-[20px]'>Hi I'm Tina</p>
+                            <p className='indent-4 mb-2 font-roundo-medium text-[20px]'>Hi I'm Tina!</p>
                             <p className='indent-4 mb-2'>
                                 With a background in Linguistics and Education, I’ve always tried to find ways to bring creativity into my professional life, whether through creating interactive curriculums to meet the diverse needs of children or designing engaging materials using everyday items.
                             </p>
@@ -118,10 +126,10 @@ function About() {
                         </div>
                     </section>
 
-                    <section className='py-[10rem] flex flex-col items-center justify-center lg:flex-row gap-10 relative'>
+                    <section className='py-20 lg:py-[10rem] flex flex-col items-center justify-center lg:flex-row gap-10 relative'>
                         <div className='lg:flex-1 w-full'>
                             <div className='py-2 mb-2 border-b border-black border-dashed'>
-                                <h4 className='text-orange'>Skills</h4>
+                                <h3 className='text-orange'>Skills</h3>
                             </div>
 
                             <div className='grid gap-10'>
@@ -164,13 +172,13 @@ function About() {
                         </div>
 
                         <div className="relative flex-1">
-                            <div className="relative flex flex-col justify-center items-end cursor-pointer">
+                            <div className="relative flex flex-col justify-center items-end">
                                 <div
                                     className="card bg-white w-[300px] h-[400px] p-4 rounded-xl border-2 relative overflow-hidden hover:z-10 hover:scale-105 hover:translate-y-2 transition-transform duration-300 ease-in">
-                                    <div className="absolute top-0 left-0 w-full px-4 py-2 bg-charcoal border-b-2">
+                                    <div className="absolute top-0 left-0 w-full px-4 py-2 bg-blue border-b-2">
                                         <div className="flex justify-between items-center">
-                                            <p className="font-roundo-medium mt-1 text-white"> Hidden Talent </p>
-                                            <div className='h-3 w-3 border-2 border-dark-grey rounded-full bg-light-yellow-bg'></div>
+                                            <p className="font-roundo-medium mt-1"> Hidden Talent </p>
+                                            <div className='h-3 w-3 border-2 rounded-full bg-light-yellow-bg'></div>
                                         </div>
                                     </div>
 
@@ -184,7 +192,7 @@ function About() {
                                 >
                                     <div className="absolute top-0 left-0 w-full px-4 py-2 bg-yellow border-b-2">
                                         <div className='flex justify-between items-center'>
-                                            <p className="font-roundo-medium mt-1">My Value</p>
+                                            <p className="font-roundo-medium mt-1">Core Value</p>
                                             <div className='h-3 w-3 border-2 rounded-full bg-orange'></div>
                                         </div>
                                     </div>
@@ -211,25 +219,35 @@ function About() {
                                 </div>
                             </div>
                         </div>
-
-
                     </section >
 
                     <section className=''>
-                        <div className='flex flex-col-reverse md:flex-row gap-10 relative'>
-                            <div className='basis-[40%] relative overflow-hidden  w-[80%] border-2 rounded-xl'>
-                                <div className='h-10 w-full absolute top-0 border-b-2 bg-white rounded-t-xl z-10'> </div>
-                                <div className='pt-14 pb-4 px-8 relative bg-white z-0'>
-                                    <img src={hobbies} alt="hobbies" className='border-2 rounded-md bg-white mx-auto' />
+                        <div className='flex flex-col-reverse items-center lg:flex-row gap-16 relative'>
+                            <div className='basis-[40%] relative overflow-hidden w-full md:w-[80%] bg-white rounded-xl'>
+                                <div className='h-14 w-full absolute top-0 border-2 bg-charcoal rounded-t-xl z-10 text-white flex items-center justify-between px-6'>
+                                    <p className=''>
+                                        My Currents
+                                    </p>
+                                    <div className='flex gap-2 items-center md:gap-4'>
+                                        <div className='w-3 md:w-4 h-[2px] bg-light-yellow-bg'></div>
+                                        <div className='h-3 w-3 md:h-4 md:w-4 rounded-full bg-yellow'></div>
+                                        <div class="relative w-5 h-5">
+                                            <div class="absolute top-1/2 left-0 w-full h-[3px] bg-blue rotate-45 origin-center"></div>
+                                            <div class="absolute top-1/2 left-0 w-full h-[3px] bg-blue -rotate-45 origin-center"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='pt-14 pb-4 px-8 relative border-2 rounded-xl' style={grain}>
+                                    <img src={hobbies} alt="hobbies" />
                                 </div>
                             </div>
 
                             <div className='basis-[60%] w-full'>
                                 <div className='py-2 mb-8 border-b border-black border-dashed text-orange'>
-                                    <h4>I Also Like</h4>
+                                    <h3>I Also Like</h3>
                                 </div>
                                 <div className='basis-[60%]'>
-                                    <ul className='font-roundo list-disc px-4 leading-[30px]'>
+                                    <ul className='list-disc px-4 '>
                                         <li>I love hanging out with my 3-year-old niece. She's my doodle inspiration. We spend hours building epic block towers (that she loves to knock down, of course) and laughing along to Peppa Pig episodes. Honestly, she keeps me young and creative </li>
 
                                         <li>I'm working hard to stay healthy by making yoga and Pilates a regular habit. I've been practicing the crow pose for months. I will nail it eventually. </li>

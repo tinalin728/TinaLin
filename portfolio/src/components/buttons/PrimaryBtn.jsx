@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
+
 function PrimaryBtn({ to, text, icon, href, reverseOrder = false }) {
 
     const isExternal = href && !to;
 
 
-    const commonClasses = 'group relative inline-flex items-center justify-center border-2 border rounded-full shadow-charcoal overflow-hidden hover:shadow-charcoal-hover hover:translate-x-[.5%] transition-all duration-500'
+    const commonClasses = 'group relative bg-light-yellow-bg inline-flex items-center justify-center border-2 border rounded-full shadow-charcoal overflow-hidden hover:shadow-charcoal-hover hover:translate-x-[.5%] transition-all duration-500'
 
     const btnContent = (
         <div className='relative inline-flex items-center gap-4 px-6 py-4 transition duration-300 ease-in z-10'>{
@@ -16,12 +17,12 @@ function PrimaryBtn({ to, text, icon, href, reverseOrder = false }) {
                     <div>
                         <img src={icon} alt="" width={30} />
                     </div>
-                    <span className="font-roundo text-base lg:tracking-[2px]">{text}</span>
+                    <span className="font-roundo-medium text-base lg:tracking-[2px]">{text}</span>
                 </>
 
             ) : (
                 <>
-                    <span className="font-roundo text-base lg:tracking-[2px]">{text}</span>
+                    <span className="font-roundo-medium text-base lg:tracking-[2px]">{text}</span>
                     <div className='group-hover:-rotate-[15deg] transition duration-500'>
                         <img src={icon} alt="icon" width={30} />
                     </div>
